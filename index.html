@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<button id="reload">RELOAD</button>
+<div id="root"></div>
+
+<script type="text/javascript" src="./lib/virtual-dom.js"></script>
+<script type="text/javascript">
+    var a = (
+        h('ul', { className: 'list', style: 'list-style: none;' },
+                h('li', {onClick: function() { alert("item 1") }}, 'item 1'),
+                h('li', {}, 'item 2'),
+                h('input', {type: "text", disabled: true})
+        )
+    );
+    var b = (
+        h('ul', { className: 'list list-1', style: 'list-style: none;' },
+                h('li', {}, 'item 1'),
+                h('li', {}, 'hello!')
+        )
+    );
+
+    var $root = document.getElementById('root');
+    var $reload = document.getElementById('reload');
+
+    updateElement($root, a);
+
+    $reload.addEventListener('click', function() {
+        updateElement($root, b, a);
+    });
+</script>
+
+</body>
+</html>
